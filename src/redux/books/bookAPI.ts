@@ -29,18 +29,38 @@ export const bookApi = createApi({
       },
       providesTags: ["Books"],
     }),
+
     getSingleBook: builder.query<IBook, string>({
       query: (id) => `/books/${id}`,
       providesTags: ["Books"],
     }),
+
     addBook: builder.mutation<IApiResponse<IBook>, IBookInput>({
       query: (data) => ({
         url: "/books",
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Books"],
+    }),
+
+    updateBook: builder.mutation<
+      IApiResponse<IBook>,
+      { id: string; data: Partial<IBookInput> }
+    >({
+      query: ({ id, data }) => ({
+        url: `/books/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Book", "Books"],
     }),
   }),
 });
 
-export const { useGetBooksQuery, useGetSingleBookQuery } = bookApi;
+export const {
+  useGetBooksQuery,
+  useGetSingleBookQuery,
+  useAddBookMutation,
+  useUpdateBookMutation,
+} = bookApi;
