@@ -27,6 +27,9 @@ export const authApi = createApi({
         method:"POST"
       })
     }),
-    
+     getCurrentUser: builder.query({
+      query: () => "/auth/current-user",
+      providesTags: ["User"],
+    }),
   }),
 });
