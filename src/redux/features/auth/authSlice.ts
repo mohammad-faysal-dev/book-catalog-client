@@ -21,5 +21,12 @@ export const authApi = createApi({
         body: data,
       }),
     }),
+    logout:builder.mutation({
+      query:()=>({
+        url:"/auth/logout",
+        method:"POST"
+      })
+    }),
+    
   }),
 });
