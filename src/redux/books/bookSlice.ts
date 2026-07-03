@@ -9,7 +9,6 @@ interface BookState {
   };
   selectedBook: IBook | null;
 }
-
 const initialState: BookState = {
   filters: {
     search: "",
@@ -38,8 +37,16 @@ const bookSlice = createSlice({
         year: "",
       };
     },
+    setSelectedBook: (state, action: PayloadAction<IBook | null>) => {
+      state.selectedBook = action.payload;
+    },
   },
 });
-export const { clearFilters, setGenreFilter, setYearFilter, setSearchFilter } =
-  bookSlice.actions;
+export const {
+  clearFilters,
+  setGenreFilter,
+  setYearFilter,
+  setSearchFilter,
+  setSelectedBook,
+} = bookSlice.actions;
 export default bookSlice.reducer;
