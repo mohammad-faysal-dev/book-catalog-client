@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IBook } from "../../types";
+import { IApiResponse, IBook, IBookInput } from "../../types";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
@@ -32,6 +32,13 @@ export const bookApi = createApi({
     getSingleBook: builder.query<IBook, string>({
       query: (id) => `/books/${id}`,
       providesTags: ["Books"],
+    }),
+    addBook: builder.mutation<IApiResponse<IBook>, IBookInput>({
+      query: (data) => ({
+        url: "/books",
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
