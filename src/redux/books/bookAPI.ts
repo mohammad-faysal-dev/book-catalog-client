@@ -55,6 +55,13 @@ export const bookApi = createApi({
       }),
       invalidatesTags: ["Book", "Books"],
     }),
+    deleteBook: builder.mutation<IApiResponse<null>, string>({
+      query: (id) => ({
+        url: `/books/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Book", "Books"],
+    }),
   }),
 });
 
