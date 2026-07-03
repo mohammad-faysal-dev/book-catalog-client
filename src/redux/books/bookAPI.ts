@@ -29,7 +29,11 @@ export const bookApi = createApi({
       },
       providesTags: ["Books"],
     }),
+    getSingleBook: builder.query<IBook, string>({
+      query: (id) => `/books/${id}`,
+      providesTags: ["Books"],
+    }),
   }),
 });
 
-export const { useGetBooksQuery } = bookApi;
+export const { useGetBooksQuery, useGetSingleBookQuery } = bookApi;
