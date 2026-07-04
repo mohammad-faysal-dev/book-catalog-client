@@ -52,3 +52,7 @@ export interface IRegisterData {
   email: string;
   password: string;
 }
+export interface IAuthState {
+  user: IUser | null;
+  token: string | null;
+}
